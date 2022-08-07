@@ -9,10 +9,10 @@ import plotly.graph_objs as go
 
 
 ###### Define your variables #####
-tabtitle = 'Titanic!'
-color1='#92A5E8'
-color2='#8E44AD'
-color3='#FFC300'
+tabtitle = 'Titanic Analysis!'
+color1='#0099cc'
+color2='#ffcc99'
+color3='#cccc00'
 sourceurl = 'https://www.kaggle.com/c/titanic'
 githublink = 'https://github.com/plotly-dash-apps/304-titanic-dropdown'
 
@@ -20,7 +20,7 @@ githublink = 'https://github.com/plotly-dash-apps/304-titanic-dropdown'
 ###### Import a dataframe #######
 df = pd.read_csv("https://raw.githubusercontent.com/austinlasseter/plotly_dash_tutorial/master/00%20resources/titanic.csv")
 df['Female']=df['Sex'].map({'male':0, 'female':1})
-df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
+df['Cabin Class'] = df['Pclass'].map({1:'Queenstown', 2: 'Southampton', 3:'Cherbourg'})
 variables_list=['Survived', 'Female', 'Fare', 'Age']
 
 ########### Initiate the app
@@ -53,20 +53,20 @@ def display_value(continuous_var):
     results=pd.DataFrame(grouped_mean)
     # Create a grouped bar chart
     mydata1 = go.Bar(
-        x=results.loc['first'].index,
-        y=results.loc['first'][continuous_var],
+        x=results.loc['Queenstown'].index,
+        y=results.loc['Queenstown'][continuous_var],
         name='First Class',
         marker=dict(color=color1)
     )
     mydata2 = go.Bar(
-        x=results.loc['second'].index,
-        y=results.loc['second'][continuous_var],
+        x=results.loc['Southampton'].index,
+        y=results.loc['Southampton'][continuous_var],
         name='Second Class',
         marker=dict(color=color2)
     )
     mydata3 = go.Bar(
-        x=results.loc['third'].index,
-        y=results.loc['third'][continuous_var],
+        x=results.loc['Cherbourg'].index,
+        y=results.loc['Cherbourg'][continuous_var],
         name='Third Class',
         marker=dict(color=color3)
     )
